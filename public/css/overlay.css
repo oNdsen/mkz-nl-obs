@@ -1,0 +1,133 @@
+:root {
+    --blue-bg-color: #000c33ef;
+
+    --orange-fg-color: linear-gradient(to left, #ff7a00, #f76f00, #ee6300, #e55800, #dc4c00);
+    --orange-bg-color: linear-gradient(to left, #be4100, #b53b00, #ab3400, #a22e00, #992800);
+}
+  
+
+body {
+    font-family: prime_regular;
+
+    background-size: cover;
+
+    color: white;
+
+    overflow: hidden;
+    user-select: none;
+}
+
+div.scorebug {
+    width: 1000px;
+    height: 75px;
+    position: absolute;
+
+    top: 0px;
+    left: 460px;
+
+    background-color: #181818dd;
+}
+
+div.scorebug p.board {
+    font-size: 34px;
+}
+
+div.scorebug p.board span {
+    position: absolute;
+    text-align: center;
+}
+
+div.scorebug p.board span.team.name {
+    font-size: calc(10px + .75vw);
+    width: 300px;
+    top: 20px;
+}
+
+div.scorebug p.board span.team.score {
+    width: 100px;
+    top: 15px;
+}
+
+div.scorebug p.board span.team.name.blue {
+    left: 0px;
+}
+
+div.scorebug p.board span.team.name.orange {
+    right: 0px;
+}
+
+div.scorebug p.board span.team.score.blue {
+    color: #000099;
+    left: 300px;
+}
+
+div.scorebug p.board span.team.score.orange {
+    color: #be4100;
+    right: 300px;
+}
+
+div.scorebug p.board span.info.time {
+    width: 100px;
+    top: 15px;
+    left: 450px;
+}
+
+div.scorebug p.board span.info.match {
+    font-family: prime_regular;
+    font-size: 10px;
+    
+    width: 100px;
+    top: 5px;
+    left: 450px;
+}
+
+div.playerbug div.player {
+    width: 250px;
+
+    position: absolute;
+    top: 600px;
+}
+
+div.playerbug div.blue {
+    text-align: left;
+    left: 30px;
+}
+
+div.playerbug div.orange {
+    text-align: right;
+    right: 30px;
+}
+
+div.targetinfo {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: fit-content;
+    height: fit-content;
+    background-color: #181818bb;
+}
+
+div.targetinfo div.player.stats p#header {
+    text-align: center;
+    padding-bottom: 0px;
+}
+
+div.targetinfo div.player.stats p#statstitle span{
+    text-align: center;
+    width: 100px;
+    display: block;
+    float: left;
+    line-height: 20px;
+}
+
+div.targetinfo div.player.stats p#statsvalue span{
+    text-align: center;
+    width: 100px;
+    display: block;
+    float: left;
+
+    padding-bottom: 5px;
+}
+
+
+

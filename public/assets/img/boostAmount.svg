@@ -1,0 +1,15 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        path#fullarc {
+            stroke-linecap: round;
+        }
+
+        path#boostarc {
+            stroke-linecap: round;
+            stroke-dasharray: 360;
+            stroke-dashoffset: 240;
+        }
+    </style>
+    <path id="fullarc" d="m 50 155 a 75 75 0 1 1 100 0" stroke-width="15px" stroke="black" stroke-opacity="50%" fill="none"></path>
+    <path id="boostarc" d="m 50 155 a 75 75 0 1 1 100 0" stroke-width="15px" stroke="blue" fill="none"></path>
+</svg>

@@ -4,11 +4,11 @@
     --orange-fg-color: linear-gradient(to left, #ff7a00, #f76f00, #ee6300, #e55800, #dc4c00);
     --orange-bg-color: linear-gradient(to left, #be4100, #b53b00, #ab3400, #a22e00, #992800);
 }
-  
 
 body {
     font-family: prime_regular;
 
+    background-image: url('../assets/img/maxresdefault.jpg');
     background-size: cover;
 
     color: white;
@@ -22,10 +22,11 @@ div.scorebug {
     height: 75px;
     position: absolute;
 
-    top: 0px;
+    top: 15px;
     left: 460px;
 
-    background-color: #181818dd;
+    background-color: #181818bb;
+    border-radius: 0% 0% 10% 10%;
 }
 
 div.scorebug p.board {
@@ -38,7 +39,7 @@ div.scorebug p.board span {
 }
 
 div.scorebug p.board span.team.name {
-    font-size: calc(10px + .75vw);
+    font-size: 20px;
     width: 300px;
     top: 20px;
 }
@@ -57,28 +58,26 @@ div.scorebug p.board span.team.name.orange {
 }
 
 div.scorebug p.board span.team.score.blue {
-    color: #000099;
     left: 300px;
 }
 
 div.scorebug p.board span.team.score.orange {
-    color: #be4100;
     right: 300px;
 }
 
 div.scorebug p.board span.info.time {
+    font-size: 25px;
     width: 100px;
-    top: 15px;
+    top: 25px;
     left: 450px;
 }
 
 div.scorebug p.board span.info.match {
-    font-family: prime_regular;
-    font-size: 10px;
+    font-size: 12px;
     
-    width: 100px;
+    width: 300px;
     top: 5px;
-    left: 450px;
+    left: 350px;
 }
 
 div.playerbug div.player {
@@ -98,36 +97,106 @@ div.playerbug div.orange {
     right: 30px;
 }
 
+div.playerbug div.player div.p0, div.playerbug div.player div.p1, div.playerbug div.player div.p2 {
+    background-color: #181818bb;
+
+    height: 35px;
+    border-radius: 5px;
+}
+
+div.playerbug div.player span.name {
+    float: left;
+    padding: 7px 0px 0px 15px;
+}
+
+div.playerbug div.player span.boost {
+    --boost: "100%";
+    color: #bea720;
+    float: right;
+    padding: 7px 15px 0px 0px;
+}
+
 div.targetinfo {
     position: absolute;
     bottom: 30px;
     left: 30px;
-    width: fit-content;
-    height: fit-content;
+    width: 525px;
+    padding: 0px 0px 15px 0px;
+
     background-color: #181818bb;
 }
 
 div.targetinfo div.player.stats p#header {
-    text-align: center;
+    width: 360px;
+    text-align: left;
     padding-bottom: 0px;
+    margin-left: 18px;
 }
+
+div.targetinfo div.player.stats p#header span.boost {
+    float: right;
+    padding-right: 15px;
+}
+
+div.targetinfo div.player.stats p#statstitle, div.targetinfo div.player.stats p#statsvalue {
+    width: max-content;
+    height: fit-content;
+}
+
 
 div.targetinfo div.player.stats p#statstitle span{
     text-align: center;
-    width: 100px;
+    width: 75px;
     display: block;
     float: left;
     line-height: 20px;
+    border-right: thin solid #ffffff;
 }
 
 div.targetinfo div.player.stats p#statsvalue span{
     text-align: center;
-    width: 100px;
+    width: 75px;
     display: block;
     float: left;
 
-    padding-bottom: 5px;
+    border-right: thin solid #ffffff;
 }
+
+div.playerbug div.player p.data::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    left: 0px;
+    visibility: visible;
+    border-radius: 5px;
+    transform: translateY(32px);
+}
+
+div.playerbug div.player.orange p.data::after {
+    background: #ff9838;
+    box-shadow: 0px 0px 5px 1px rgba(255,136,0,1);
+}
+
+div.playerbug div.player.blue p.data::after {
+    background: #60cdff;
+    box-shadow: 0px 0px 5px 1px rgba(0,26,255,1);
+}
+
+div.targetinfo div.player.stats p#header::after {
+    content: "";
+    position: absolute;
+    height: 3px;
+    visibility: visible;
+    border-radius: 5px;
+    width: 360px;
+    left: 15px;
+    transform: translateY(25px);
+
+    background: #60cdff;
+    box-shadow: 0px 0px 10px 1px rgba(0,26,255,1);
+}
+
 
 
 

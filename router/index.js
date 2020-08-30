@@ -1,13 +1,22 @@
 const router = require('express').Router();
 const path = require('path');
 
+const matchInfo = require('./../modules/websocket');
+
 const publicDir = path.join(__dirname + "./../public/");
 
 let owData;
+let data = {
+    name: "Test"
+};
 
 router.get("/overlay", (req, res) => {
     res.sendFile(path.join(publicDir + "overlay.html"));
 });
+
+router.get("/overlay/data", (req, res) => {
+    res.status(201).json(data);
+})
 
 router.get("/admin", (req, res) => {
     res.sendFile(path.join(publicDir + "admin.html"));

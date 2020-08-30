@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/IsaaacQINH/mkz-nl-obs#readme",
   "dependencies": {
+    "cli-msg": "^1.0.0",
     "express": "^4.17.1",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "ws": "^7.3.1"
   }
 }

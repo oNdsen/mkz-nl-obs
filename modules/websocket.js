@@ -7,35 +7,6 @@ let config = {
     debug: true
 };
 
-let player = {
-    primaryID: "empty",
-    name: "empty",
-    score: 0,
-    goals: 0,
-    assists: 0,
-    saves: 0,
-    shots: 0,
-    balltouches: 0,
-    cartouches: 0,
-    demos: 0
-};
-
-let team = {
-    name: "empty",
-    score: 0,
-    players: [player, player, player]
-}
-
-let matchInfo = {
-    tournamentID: "empty",
-    bracketID: "empty",
-    matchID: "empty",
-    winner: "empty",
-    teams: [team, team]
-};
-
-main(config);
-
 function main(config) {
     /**
      * Rocket League WebSocket client
@@ -129,13 +100,7 @@ function main(config) {
             rlWsClientReady = false;
         }
         wsClient.onmessage = function(message) {
-
-            let data = JSON.parse(message.data.data);
-
-            if (data.event == "game:update:state") cropData(data.game);
-            else if (data.event == "game:match_ended") postMatchData(matchInfo);
-
-            if (config.debug) console.log(matchInfo);
+            sendRelayMessage(0, message.data);
         }
         wsClient.onerror = function (err) {
             rlWsClientReady = false;
@@ -143,65 +108,8 @@ function main(config) {
             // error.wb(JSON.stringify(err));
         };
     }
-};
-
-function cropData(game) {
-    let arrangedTeams = arrangeTeams(unshipped);
-
-    matchInfo.teams[0] = game.teams[0];
-    matchInfo.teams[1] = game.teams[1];
-
-    matchInfo.teams[0].players = arrangedTeams[0];
-    matchInfo.teams[1].players = arrangedTeams[1];
-
-    matchInfo.winner = game.winner;
 }
 
-function arrangeTeams(data) {
-    
-    //ARRANGE TEAMS
-    let teamLeft = [];
-    let teamRight = [];
-
-    Object.entries(data.players).forEach(entry => {
-        let tP = {};
-        const [key, value] = entry;
-
-        tP.primaryID = value.primaryID;
-        tP.name = value.name;
-        tP.score = value.score;
-        tP.goals = value.goals;
-        tP.assists = value.assists;
-        tP.saves = value.saves;
-        tP.balltouches = value.touches;
-        tP.cartouches = value.cartouches;
-        tP.demos = value.demos;
-
-        if (value.team == 0) {           
-            teamLeft.push(tP);
-        }
-        else { 
-            teamRight.push(tP);
-        }
-    });
-
-    return [teamLeft, teamRight];
+module.exports = {
+    main: main(config)
 }
-
-function postMatchData(url, ship) {
-    const axios = require('axios');
-
-    axios({
-        method: 'post',
-        url: url,
-        data: ship
-    })
-    .then(function (res) {
-        console.log(res);
-    })
-    .catch(function (err) {
-        console.log(err);
-    });    
-}
-
-module.exports = matchInfo;

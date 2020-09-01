@@ -7,6 +7,8 @@ const morgan = require('morgan');
 const path = require('path');
 const port = 3000;
 
+const relay = require('./modules/websocket');
+
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

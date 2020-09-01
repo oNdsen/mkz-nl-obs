@@ -1,13 +1,67 @@
-async function test() {
-    let url = "http://localhost:3000/overlay/data";
-    let response = await fetch(url);
+$(() => {
+    WsSubscribers.init(49322, false);
 
-    if (response.ok) {
-        let json = await response.json();
-        console.log(json);
-    } else {
-        alert("HTTP-Error: " + response.status);
-    }
+    WsSubscribers.subscribe("game", "match_created", () => {
+
+    });
+
+    WsSubscribers.subscribe("game", "initialized", () => {
+
+    });
+
+    WsSubscribers.subscribe("game", "pre_countdown_begin", () => {
+
+    });
+
+    WsSubscribers.subscribe("game", "post_countdown_begin", () => {
+      
+    });
+
+    WsSubscribers.subscribe("game", "statfeed_event", (d) => {
+        
+    });
+
+    WsSubscribers.subscribe("game", "goal_scored", (d) => {
+        
+    });
+
+    WsSubscribers.subscribe("game", "replay_start", () => {
+
+    });
+
+    WsSubscribers.subscribe("game", "replay_will_end", () => {
+
+    });
+
+    WsSubscribers.subscribe("game", "replay_end", () => {
+
+    });
+
+    WsSubscribers.subscribe("game", "match_ended", (d) => {
+
+    });
+
+    WsSubscribers.subscribe("game", "podium_start", () => {
+
+    });
+
+    WsSubscribers.subscribe("game", "update_state", (d) => {
+        
+    });
+});
+
+function scorebugUpdate(data) {
+
 }
 
-test();
+function playerbugUpdate(data) {
+    
+}
+
+function targetinfoUpdate(data) {
+
+}
+
+function statfeedUpdate(data) {
+    
+}

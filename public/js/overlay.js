@@ -52,6 +52,11 @@ $(() => {
         playerbugUpdate(sortByTeam(d.players));
         //Target Player Stats
         if(d.game.hasTarget) targetinfoUpdate(d.players[d.game.target]);
+        else {
+            $('.targetinfo').css('visibility', 'hidden');
+            $('.boostmeter').css('visibility', 'hidden');
+            $('.targetinfo .player.stats #header').css("--targetBoost", `0px`);
+        }
     });
 });
 
@@ -90,11 +95,12 @@ function targetinfoUpdate(data) {
     $('.targetinfo .player.stats .value.saves').text(data.saves);
     $('.targetinfo .player.stats .value.shots').text(data.shots);
 
-    //$('.targetinfo .player.boostmeter .boost.value').text(data.boost);
-    //$('.targetinfo .player.boostmeter .speed.value').text(data.speed + " kph");
+    $('.player.boostmeter .boost.value').text(data.boost);
+    $('.player.boostmeter .speed.value').text(data.speed + " kph");
+    document.getElementById('boostarc').style.strokeDashoffset = animatePath(data.boost);
 
-    $('.targetinfo .player.stats #header .boost').text(data.boost);
-    $('.targetinfo .player.stats #header').css("--targetBoost", `${data.boost * 3.6}px`);
+    $('.targetinfo').css('visibility', 'visible');
+    $('.boostmeter').css('visibility', 'visible');
 }
 
 function statfeedUpdate(data) {
@@ -103,6 +109,10 @@ function statfeedUpdate(data) {
 
 function reformatTime(time, showMs) {
     return (new Date(time * 1000)).toISOString().substr(showMs ? 17 : 15, 4);
+}
+
+function animatePath(value) {
+    return 360 - (value * 3.6);
 }
 
 function sortByTeam(players) {

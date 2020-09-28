@@ -1,14 +1,14 @@
 :root {
-    --blue-bg-color: #000c33ef;
+    --blue-bg-color: linear-gradient(90deg, rgba(0, 125, 255, 0.25) 0%, rgba(255,255,255,0) 100%);
+    --orange-bg-color: linear-gradient(270deg, rgba(255, 137, 0, 0.25) 0%, rgba(255,255,255,0) 100%);
 
-    --orange-fg-color: linear-gradient(to left, #ff7a00, #f76f00, #ee6300, #e55800, #dc4c00);
-    --orange-bg-color: linear-gradient(to left, #be4100, #b53b00, #ab3400, #a22e00, #992800);
+    --scoreboard-bg: linear-gradient(90deg, rgba(0, 126, 255, 0.25) 0%, rgba(255,255,255,0) 50%, rgba(255, 137, 0, 0.25) 100%);
 }
 
 body {
     font-family: prime_regular;
 
-    background-image: url('../assets/img/maxresdefault.jpg');
+    background-color: black;
     background-size: cover;
 
     color: white;
@@ -25,7 +25,7 @@ div.scorebug {
     top: 0px;
     left: 460px;
 
-    background-color: #181818bb;
+    background: var(--scoreboard-bg);
     border-radius: 0% 0% 15% 15%;
 }
 
@@ -95,10 +95,26 @@ div.playerbug div.blue {
 div.playerbug div.orange {
     text-align: right;
     right: 30px;
+    background-color: var(--orange-bg-color);
 }
 
 div.playerbug div.player div.p0, div.playerbug div.player div.p1, div.playerbug div.player div.p2 {
-    background-color: #181818bb;
+    --boost: "100%";
+
+    height: 35px;
+    border-radius: 5px;
+}
+
+div.playerbug div.blue div.p0, div.playerbug div.blue div.p1, div.playerbug div.blue div.p2 {
+    background: var(--blue-bg-color);
+    --boost: "100%";
+
+    height: 35px;
+    border-radius: 5px;
+}
+
+div.playerbug div.orange div.p0, div.playerbug div.orange div.p1, div.playerbug div.orange div.p2 {
+    background: var(--orange-bg-color);
     --boost: "100%";
 
     height: 35px;
@@ -123,7 +139,9 @@ div.targetinfo {
     width: 525px;
     padding: 0px 0px 15px 0px;
 
-    background-color: #181818bb;
+    border-radius: 20px;
+
+    background: var(--blue-bg-color);
 }
 
 div.targetinfo div.player.stats p#header {
@@ -132,11 +150,6 @@ div.targetinfo div.player.stats p#header {
     padding-bottom: 0px;
     margin-left: 18px;
     --targetBoost: 360px;
-}
-
-div.targetinfo div.player.stats p#header span.boost {
-    float: right;
-    padding-right: 15px;
 }
 
 div.targetinfo div.player.stats p#statstitle, div.targetinfo div.player.stats p#statsvalue {
@@ -186,19 +199,63 @@ div.playerbug div.player.blue p.data::after {
     box-shadow: 0px 0px 5px 1px rgba(0,26,255,1);
 }
 
-div.targetinfo div.player.stats p#header::after {
+div.player.boostmeter {
+    width: 200px;
+    height: 200px;
+
+    border-radius: 50%;
+    border: 20px black;
+
+    position: absolute;
+
+    right: 50px;
+    bottom: 50px;
+
+    background: radial-gradient(circle, rgba(0,86,175,.25) 0%, rgba(0,86,175,0.1) 100%);
+}
+
+div.player.boostmeter p.boost.value {
+    width: inherit;
+
+    position: absolute;
+    top: 10px;
+
+    font-size: 42px;
+    text-align: center;
+}
+
+div.player.boostmeter p.boost.value::after {
+    width: 33%;
+    height: 2px;
+
     content: "";
     position: absolute;
-    height: 3px;
-    visibility: visible;
-    border-radius: 5px;
-    width: var(--targetBoost);
-    left: 15px;
-    transform: translateY(25px);
-    transition-duration: 500ms;
+    top: 55px;
+    left: 33%;
 
-    background: #60cdff;
-    box-shadow: 0px 0px 10px 1px rgba(0,26,255,1);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+div.player.boostmeter p.speed.value {
+    width: inherit;
+
+    position: absolute;
+    bottom: 45px;
+
+    color: rgb(255, 196, 0);
+    text-align: center;
+}
+
+path#fullarc {
+    stroke-linecap: round;
+}
+
+path#boostarc {
+    stroke-linecap: round;
+    stroke-dasharray: 361;
+    stroke-dashoffset: 360;
+
+    transition-duration: 250ms;
 }
 
 

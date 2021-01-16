@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
+
+:root {
+    --blue-bg-color: linear-gradient(90deg, rgba(3, 77, 164, .75) 0%, rgba(33, 33, 33, .5) 100%);
+    --orange-bg-color: linear-gradient(270deg, rgba(251, 106, 49, 0.75) 0%, rgba(33, 33, 33, .5) 100%);
+
+    --scoreboard-bg: linear-gradient(90deg, rgba(34, 34, 34, 0.6) 10%, rgba(3, 77, 164, 0.80) 25%, rgba(33, 33, 33, .5) 50%, rgba(251, 106, 49, 0.80) 65%, rgba(34, 34, 34, 0.6) 90%);
+}
+
+/*
+rgba(251, 106, 49, 0.80)
+*/
+
+body {
+    --teamcolor: white;
+    font-family: 'Montserrat', sans-serif;
+    background-size: cover;
+    color: white;
+    overflow: hidden;
+    user-select: none;
+}
+
+div.scorebug {
+    width: 1000px;
+    height: 75px;
+    position: absolute;
+
+    top: 0;
+    left: 460px;
+    background: var(--scoreboard-bg);
+    border-radius: 0% 0% 15% 15%;
+}
+
+div.scorebug .board {
+    font-size: 40px;
+}
+
+
+div.scorebug .board span {
+    position: absolute;
+    text-align: center;
+}
+
+div.iconleft {
+    height: 55px;
+    width: 55px;
+    top: 10px;
+    position: absolute;
+    margin-left: 20px;
+    background-image: url('/assets/img/logo/logo_blue.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+div.iconright {
+    height: 55px;
+    width: 55px;
+    top: 10px;
+    position: absolute;
+    right: 20px;
+    background-image: url('/assets/img/logo/logo_orange.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+div.iconstats {
+    height: 55px;
+    width: 55px;
+    position: absolute;
+    right: 50px;
+    bottom: 15px;
+    background-image: url("/assets/img/logo/logo_orange.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.player .goals {
+    left: 98px;
+}
+
+.player .assists {
+    left: 138px;
+}
+
+.player .saves {
+    left: 178px;
+}
+
+.player .shots {
+    left: 218px;
+}
+
+.player .stats {
+    position: absolute;
+    height: 22px;
+    display: flex;
+    flex-direction: row;
+}
+
+.player .stats img {
+    margin-top: 3px;
+    height: 15px;
+    width: 15px;
+
+}
+
+.player .stats .stat {
+    font-size: 12px;
+    margin: 0px;
+    margin-top: 1px;
+    margin-left: 5px;
+    line-height: 22px;
+    width: 10px;
+}
+
+div.scorebug .board span.team.name {
+    font-size: 25px;
+    width: 300px;
+    top: 25px;
+}
+
+div.scorebug .board span.team.score {
+    width: 100px;
+    top: 15px;
+}
+
+div.scorebug .board span.team.name.blue {
+    left: 60px;
+}
+
+div.scorebug .board span.team.name.orange {
+    right: 60px;
+}
+
+div.scorebug .board span.team.score.blue {
+    left: 300px;
+}
+
+div.scorebug .board span.team.score.orange {
+    right: 300px;
+}
+
+div.scorebug .board span.info.time {
+    font-size: 28px;
+    width: 100px;
+    top: 25px;
+    left: 450px;
+}
+
+div.scorebug .board span.info.match {
+    font-size: 13px;
+
+    width: 300px;
+    top: 5px;
+    left: 350px;
+}
+
+div.playerbug div.team {
+    width: 250px;
+    position: absolute;
+    bottom: 300px;
+}
+
+div.playerbug div.blue {
+    left: 30px;
+}
+
+div.playerbug div.orange {
+    right: 30px;
+    background-color: var(--orange-bg-color);
+}
+
+div.playerbug div.team div.player {
+    --boost: "100%";
+    margin-top: 15px;
+    height: 35px;
+}
+
+.player {
+    position: relative;
+}
+
+div.formorange {
+    height: 22px;
+    width: 100%;
+    background: rgba(251, 106, 49, 0.70);
+    box-shadow: 0px 0px 3px #fb6a31;
+    position: relative;
+}
+
+div.form {
+    color: black;
+    height: 20px;
+    width: 100%;
+    background: rgba(34, 34, 34, 0.6);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-radius: 2px;
+}
+
+div.formblue {
+    height: 22px;
+    width: 100%;
+    background: rgba(3, 77, 164, 0.70);
+    border-radius: 2px;
+    box-shadow: 0px 0px 3px rgba(3, 77, 164, 1);
+    position: relative;
+}
+
+div.playerbug div.team span.name {
+    display: block;
+    position: absolute;
+    font-size: 15px;
+    text-align: left;
+    height: 23px;
+    line-height: 23px;
+    left: 3px;
+}
+
+div.playerbug div.team span.boost {
+    color: #ffd000;
+    font-size: 13px;
+    margin-right: 5px;
+    --boost: "100%";
+}
+
+div.playerbug div.team p.data::after {
+    content: "";
+    position: absolute;
+    width: var(--boost);
+    height: 3px;
+    left: 0px;
+    visibility: visible;
+    border-radius: 5px;
+    transform: translateY(32px);
+    transition-duration: 500ms;
+}
+
+div.playerbug div.team.orange p.data::after {
+    background: #ff9838;
+    box-shadow: 0px 0px 5px 1px rgba(255, 136, 0, 1);
+}
+
+div.playerbug div.team.blue p.data::after {
+    background: #60cdff;
+    box-shadow: 0px 0px 5px 1px rgba(0, 26, 255, 1);
+}
+
+div.targetinfo {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    width: 525px;
+    padding: 0px 0px 15px 0px;
+    background: rgba(34, 34, 34, 0.6);
+    border-radius: 5px;
+}
+
+div.targetinfo div.team.stats p#header {
+    background: rgba(251, 106, 49, 0.8);
+    width: 360px;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 26px;
+    padding-top: 5px;
+    text-align: LEFT;
+    font-family: 'Titillium Web', sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    padding-bottom: 0;
+    margin-left: 18px;
+    border-radius: 2px;
+    background: var(--teamcolor);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.teamwrapper {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    bottom: 45px;
+    right: 120px;
+    padding-left: 30px;
+}
+
+div.teamname {
+    font-size: 12px;
+    line-height: 25px;
+    margin-left: 6px;
+}
+
+.teamicon {
+    height: 22px;
+    width: 22px;
+}
+
+div.targetinfo div.team.stats p#statstitle, div.targetinfo div.team.stats p#statsvalue {
+    width: max-content;
+    height: fit-content;
+}
+
+div.targetinfo div.team.stats p#statstitle span {
+    text-align: center;
+    width: 75px;
+    display: block;
+    float: left;
+    line-height: 20px;
+    border-right: thin solid #ffffff;
+    color: var(--teamcolor);
+}
+
+div.targetinfo div.team.stats p#statsvalue span {
+    text-align: center;
+    width: 75px;
+    display: block;
+    float: left;
+    border-right: thin solid #ffffff;
+}
+
+
+div.player.boostmeter {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+    background: rgba(34, 34, 34, 0.6);
+}
+
+div.player.boostmeter p.boost.value {
+    width: inherit;
+    position: absolute;
+    top: 10px;
+    font-size: 42px;
+    text-align: center;
+}
+
+div.player.boostmeter p.boost.value::after {
+    width: 33%;
+    height: 2px;
+    content: "";
+    position: absolute;
+    top: 55px;
+    left: 33%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+div.team.boostmeter {
+    width: inherit;
+    position: absolute;
+    bottom: 45px;
+    color: #ffd000;
+    text-align: center;
+}
+
+div.speed.value {
+    width: 100px;
+    position: absolute;
+    bottom: 60px;
+    left: 50px;
+    text-align: center;
+}
+
+path#fullarc {
+    stroke-linecap: round;
+}
+
+path#boostarc {
+    stroke: var(--teamcolor);
+    stroke-linecap: round;
+    stroke-dasharray: 361;
+    stroke-dashoffset: 360;
+    transition-duration: 250ms;
+}
+
+.replay {
+    background-image: url("/assets/img/overlayreplaycolordark.png");
+}
+
+
+
+

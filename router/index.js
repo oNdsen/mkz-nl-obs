@@ -3,7 +3,7 @@ const path = require('path');
 
 const publicDir = path.join(__dirname + "./../public/");
 
-router.get("/overlay", (req, res) => {
+router.get("/", (req, res) => {
     res.sendFile(path.join(publicDir + "overlay.html"));
 });
 

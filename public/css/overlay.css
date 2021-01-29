@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap');
 
 :root {
-    --blue-bg-color: linear-gradient(90deg, rgba(3, 77, 164, .75) 0%, rgba(33, 33, 33, .5) 100%);
-    --orange-bg-color: linear-gradient(270deg, rgba(251, 106, 49, 0.75) 0%, rgba(33, 33, 33, .5) 100%);
+    --blue-bg-color: linear-gradient(90deg, rgba(3, 77, 164, .80) 0%, rgba(33, 33, 33, .8) 100%);
+    --orange-bg-color: linear-gradient(270deg, rgba(251, 106, 49, 0.80) 0%, rgba(33, 33, 33, .8) 100%);
 
-    --scoreboard-bg: linear-gradient(90deg, rgba(34, 34, 34, 0.6) 10%, rgba(3, 77, 164, 0.80) 25%, rgba(33, 33, 33, .5) 50%, rgba(251, 106, 49, 0.80) 65%, rgba(34, 34, 34, 0.6) 90%);
+    --scoreboard-bg: linear-gradient(90deg, rgba(34, 34, 34, 0.8) 10%, rgba(3, 77, 164, 0.80) 25%, rgba(33, 33, 33, .8) 50%, rgba(251, 106, 49, 0.80) 65%, rgba(34, 34, 34, 0.8) 90%);
+
+    --gameinfo-bg:  linear-gradient(40deg,rgba(3, 77, 164, .80) 30%, rgba(33, 33, 33, .8) 50%,rgba(251, 106, 49, 0.80) 100%);
+
+    --blue-boost-bg:  linear-gradient(40deg,rgba(105, 170, 229, 1) 50%,rgba(88, 99, 174, 1) 100%);
+
+    --orange-boost-bg:  linear-gradient(40deg,rgba(236, 223, 105, 1) 50%,rgba(237, 144, 72, 1) 100%);
 }
 
 /*
@@ -18,17 +24,19 @@ body {
     color: white;
     overflow: hidden;
     user-select: none;
+    background-color: white;
 }
 
 div.scorebug {
     width: 1000px;
     height: 75px;
     position: absolute;
-
     top: 0;
     left: 460px;
     background: var(--scoreboard-bg);
     border-radius: 0% 0% 15% 15%;
+    border-bottom: solid 2px white;
+
 }
 
 div.scorebug .board {
@@ -40,6 +48,21 @@ div.scorebug .board span {
     position: absolute;
     text-align: center;
 }
+
+div.gameinfo {
+    width: 330px;
+    height: 45px;
+    top: 76px;
+    position: absolute;
+    left: 800px;
+    background: var(--gameinfo-bg);
+    border-radius: 0% 0% 15% 15%;
+    border: solid 2px white;
+
+    text-align: center;
+    word-spacing: 50px;
+}
+
 
 div.iconleft {
     height: 55px;
@@ -67,7 +90,7 @@ div.iconstats {
     height: 55px;
     width: 55px;
     position: absolute;
-    right: 50px;
+    right: 15px;
     bottom: 15px;
     background-image: url("/assets/img/logo/logo_orange.png");
     background-size: contain;
@@ -183,7 +206,7 @@ div.playerbug div.team div.player {
 div.formorange {
     height: 22px;
     width: 100%;
-    background: rgba(251, 106, 49, 0.70);
+    background: rgba(251, 106, 49, 0.80);
     box-shadow: 0px 0px 3px #fb6a31;
     position: relative;
 }
@@ -192,17 +215,40 @@ div.form {
     color: black;
     height: 20px;
     width: 100%;
-    background: rgba(34, 34, 34, 0.6);
+    background: rgba(34, 34, 34, 0.80);
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     border-radius: 2px;
 }
 
+div.formboostblue, div.formboostorange {
+    transition-duration: 500ms;
+}
+
+div.formboostblue {
+    height: 20px;
+    background: var(--blue-boost-bg);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-radius: 2px;
+}
+
+div.formboostorange {
+    height: 20px;
+    background: var(--orange-boost-bg);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border-radius: 2px;
+
+}
+
 div.formblue {
     height: 22px;
     width: 100%;
-    background: rgba(3, 77, 164, 0.70);
+    background: rgba(3, 77, 164, 0.80);
     border-radius: 2px;
     box-shadow: 0px 0px 3px rgba(3, 77, 164, 1);
     position: relative;
@@ -219,7 +265,7 @@ div.playerbug div.team span.name {
 }
 
 div.playerbug div.team span.boost {
-    color: #ffd000;
+    color: black;
     font-size: 13px;
     margin-right: 5px;
     --boost: "100%";
@@ -251,9 +297,9 @@ div.targetinfo {
     position: absolute;
     bottom: 30px;
     left: 30px;
-    width: 525px;
+    width: 450px;
     padding: 0px 0px 15px 0px;
-    background: rgba(34, 34, 34, 0.6);
+    background: rgba(34, 34, 34, 0.8);
     border-radius: 5px;
 }
 
@@ -327,7 +373,7 @@ div.player.boostmeter {
     position: absolute;
     right: 50px;
     bottom: 50px;
-    background: rgba(34, 34, 34, 0.6);
+    background: rgba(34, 34, 34, 0.8);
 }
 
 div.player.boostmeter p.boost.value {
@@ -345,7 +391,7 @@ div.player.boostmeter p.boost.value::after {
     position: absolute;
     top: 55px;
     left: 33%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 div.team.boostmeter {
@@ -378,6 +424,10 @@ path#boostarc {
 
 .replay {
     background-image: url("/assets/img/overlayreplaycolordark.png");
+}
+
+.stinger {
+    position: absolute;
 }
 
 

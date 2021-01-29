@@ -48,6 +48,15 @@ function main(config) {
 
     function sendRelayMessage(senderConnectionId, message) {
         let json = JSON.parse(message);
+        const { settings } = require('../details.json');
+
+        let index = message.indexOf('\n    "players"');
+        if (json.event === "game:update_state") {
+            let first = message.slice(0, index);
+            let second = message.slice(index);
+            let settingsstr = `\n    "settings": ${JSON.stringify(settings)},`;
+            message = first + settingsstr + second;
+        }
         log.wb(senderConnectionId + "> Sent " + json.event);
         let channelEvent = (json['event']).split(':');
         if (channelEvent[0] === 'wsRelay') {
@@ -69,6 +78,7 @@ function main(config) {
             }
             return;
         }
+
         for (let k in connections) {
             if (senderConnectionId === k) {
                 continue;

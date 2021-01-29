@@ -1,8 +1,7 @@
-
-
 $(() => {
     let updateTeamScores = false;
     let showNoTimeInClock = false;
+    let inReplay = false;
 
     WsSubscribers.init(49322, false);
 
@@ -13,15 +12,17 @@ $(() => {
     });
 
     WsSubscribers.subscribe("game", "initialized", () => {
-        //TODO Switch to Caster Overlay
+
     });
 
     WsSubscribers.subscribe("game", "pre_countdown_begin", () => {
-        //TODO Switch to Game Overlay
+
     });
 
     WsSubscribers.subscribe("game", "post_countdown_begin", () => {
-
+        setTimeout(() => {
+            toggleGameOverlay('visible');
+        }, 4250);
     });
 
     WsSubscribers.subscribe("game", "statfeed_event", (d) => {
@@ -31,21 +32,27 @@ $(() => {
     WsSubscribers.subscribe("game", "goal_scored", (d) => {
         updateTeamScores = true;
 
-        //TODO Transition with delay to Replay Overlay
-        toggleGameOverlay('hidden');
-        toggleReplayOverlay('visible');
+        setTimeout(() => {
+            playStinger();
+
+            setTimeout(() => {
+                toggleGameOverlay('hidden');
+            }, 1000);
+        }, 2750);
     });
 
     WsSubscribers.subscribe("game", "replay_start", () => {
-
+        inReplay = true;
     });
 
     WsSubscribers.subscribe("game", "replay_will_end", () => {
-
+        setTimeout(() => {
+            playStinger();
+        }, 1000);
     });
 
     WsSubscribers.subscribe("game", "replay_end", () => {
-        //TODO Switch to Game Overlay
+        inReplay = false;
     });
 
     WsSubscribers.subscribe("game", "match_ended", (d) => {
@@ -53,7 +60,7 @@ $(() => {
     });
 
     WsSubscribers.subscribe("game", "podium_start", () => {
-        //TODO Switch to Match Summary Overlay
+
     });
 
     WsSubscribers.subscribe("game", "update_state", (d) => {
@@ -62,12 +69,21 @@ $(() => {
         //Playerbugs
         playerbugUpdate(sortByTeam(d.players));
         //Target Player Stats
-        if (d.game.hasTarget) targetinfoUpdate(d.players[d.game.target], d.game.teams);
+        if (d.game.hasTarget && inReplay === false) targetinfoUpdate(d.players[d.game.target], d.game.teams);
         else {
             $('.targetinfo').css('visibility', 'hidden');
             $('.boostmeter').css('visibility', 'hidden');
             $('.targetinfo .player.stats #header').css("--targetBoost", `0px`);
         }
+
+        $('.gameinfo #series #format').text(d.settings.format);
+        $('.gameinfo #series #left').text(d.settings.blue[1]);
+        $('.gameinfo #series #right').text(d.settings.orange[1]);
+
+        $('.gameoverlay .scorebug .board .info.match').text(d.settings.liga);
+
+        if (d.settings.blue[0]) $('.gameoverlay .scorebug .board .team.name.blue').text(d.settings.blue[0]);
+        if (d.settings.orange[0]) $('.gameoverlay .scorebug .board .team.name.orange').text(d.settings.orange[0]);
     });
 });
 
@@ -83,10 +99,9 @@ function scorebugUpdate(data, uScores, sntInClock) {
     //Set Time
     if (sntInClock) {
         $('.gameoverlay .scorebug .board .info.time').text("00.0");
-    }
-    else {
+    } else {
         $('.gameoverlay .scorebug .board .info.time').text(
-            (data.isOT ? '+' : '') + reformatTime(data.time,data.time < 60 && !data.isOT)
+            (data.isOT ? '+' : '') + reformatTime(data.time, data.time < 60 && !data.isOT)
         );
     }
 
@@ -104,16 +119,17 @@ function playerbugUpdate(data) {
         Object.entries(team).forEach(element => {
             const [id, value] = element;
 
-            $(`.playerbug .player.p${value.index} .data .name`).text(value.name);
-            $(`.playerbug .player.p${value.index} .data .boost`).text(value.boost);
-            $(`.playerbug .player.p${value.index}`).css("--boost", `${value.boost}%`);
+            $(`.playerbug .team.${key} .player.p${value.index} .data .name`).text(value.name);
+            $(`.playerbug .team.${key} .player.p${value.index} .data .boost`).text(value.boost);
+            $(`.playerbug .team.${key} .player.p${value.index}`).css("--boost", `${value.boost}%`);
 
-            $(`.playerbug .player.p${value.index} .data .stats.goals .stat`).text(value.goals);
-            $(`.playerbug .player.p${value.index} .data .stats.assists .stat`).text(value.assists);
-            $(`.playerbug .player.p${value.index} .data .stats.saves .stat`).text(value.saves);
-            $(`.playerbug .player.p${value.index} .data .stats.shots .stat`).text(value.shots);
+            $(`.playerbug .team.${key} .player.p${value.index} .data .stats.goals .stat`).text(value.goals);
+            $(`.playerbug .team.${key} .player.p${value.index} .data .stats.assists .stat`).text(value.assists);
+            $(`.playerbug .team.${key} .player.p${value.index} .data .stats.saves .stat`).text(value.saves);
+            $(`.playerbug .team.${key} .player.p${value.index} .data .stats.shots .stat`).text(value.shots);
 
-            $(`.playerbug .player.p${value.index} .form .boost`).text(value.boost);
+            $(`.playerbug .team.${key} .player.p${value.index} .form .boost`).text(value.boost);
+            $(`.playerbug .team.${key} .player.p${value.index} .form .formboost${key}`).css('width', `${value.boost}%`);
         });
 
     });
@@ -123,16 +139,12 @@ function targetinfoUpdate(data, teams) {
     if (data.team === 0) $('body').css('--teamcolor', '#034ea4');
     else if (data.team === 1) $('body').css('--teamcolor', '#fb6a31');
 
-    console.log(data, teams)
-
     $('.targetinfo .team.stats #header .name').text(data.name);
     $('.targetinfo .team.stats .value.score').text(data.score);
     $('.targetinfo .team.stats .value.goals').text(data.goals);
     $('.targetinfo .team.stats .value.assists').text(data.assists);
     $('.targetinfo .team.stats .value.saves').text(data.saves);
     $('.targetinfo .team.stats .value.shots').text(data.shots);
-
-    console.log(teams);
 
     $('.targetinfo .team.stats .teamwrapper .teamname').text(teams[data.team].name);
 
@@ -146,17 +158,10 @@ function targetinfoUpdate(data, teams) {
 
 function toggleGameOverlay(visibility) {
     $('.scorebug').css('visibility', visibility);
+    $('.gameinfo').css('visibility', visibility);
     $('.playerbug').css('visibility', visibility);
     $('.targetinfo').css('visibility', visibility);
     $('.boostmeter').css('visibility', visibility);
-}
-
-function toggleMissingConnection(visibility) {
-    $('.missing').css('visibility', visibility);
-}
-
-function toggleReplayOverlay(visibility) {
-    $('.replay').css('visibility', visibility);
 }
 
 function statfeedUpdate(data) {
@@ -192,4 +197,8 @@ function sortByTeam(players) {
         blue: blue,
         orange: orange
     };
+}
+
+function playStinger() {
+    document.getElementById('stinger').play();
 }

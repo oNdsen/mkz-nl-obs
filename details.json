@@ -1,0 +1,14 @@
+{
+  "settings": {
+    "liga": "Nitro League Division 1",
+    "format": "Bo7",
+    "blue": [
+      "Team Blue",
+      "2"
+    ],
+    "orange": [
+      "Team Orange",
+      "3"
+    ]
+  }
+}

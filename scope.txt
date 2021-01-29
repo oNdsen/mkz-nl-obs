@@ -1,5 +1,0 @@
-- Spielernamen Links/Rechts
-- Liganame
-- Teamnamen zu lang
-- Übergang Replay
-- Series

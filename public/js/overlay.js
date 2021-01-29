@@ -3,6 +3,8 @@ $(() => {
     let showNoTimeInClock = false;
     let inReplay = false;
 
+    $('.replayOverlay').css('visibility', 'hidden');
+
     WsSubscribers.init(49322, false);
 
     WsSubscribers.subscribe("game", "match_created", () => {
@@ -37,6 +39,7 @@ $(() => {
 
             setTimeout(() => {
                 toggleGameOverlay('hidden');
+                $('.replayOverlay').css('visibility', 'visible');
             }, 1000);
         }, 2750);
     });
@@ -48,6 +51,10 @@ $(() => {
     WsSubscribers.subscribe("game", "replay_will_end", () => {
         setTimeout(() => {
             playStinger();
+            setTimeout(() => {
+                toggleGameOverlay('hidden');
+                $('.replayOverlay').css('visibility', 'hidden');
+            }, 700);
         }, 1000);
     });
 

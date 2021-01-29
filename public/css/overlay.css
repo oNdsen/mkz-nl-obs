@@ -422,7 +422,12 @@ path#boostarc {
     transition-duration: 250ms;
 }
 
-.replay {
+.replayOverlay {
+    position: absolute;
+    width: 1920px;
+    height: 212px;
+    left: 0;
+    bottom: 0;
     background-image: url("/assets/img/overlayreplaycolordark.png");
 }
 

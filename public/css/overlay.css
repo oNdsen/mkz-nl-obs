@@ -36,13 +36,11 @@ div.scorebug {
     background: var(--scoreboard-bg);
     border-radius: 0% 0% 15% 15%;
     border-bottom: solid 2px white;
-
 }
 
 div.scorebug .board {
     font-size: 40px;
 }
-
 
 div.scorebug .board span {
     position: absolute;
@@ -61,6 +59,53 @@ div.gameinfo {
 
     text-align: center;
     word-spacing: 50px;
+}
+
+div.seriesBlue, div.seriesOrange {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    bottom: 12px;
+}
+
+div.seriesBlue {
+    left: 50px;
+}
+
+div.seriesOrange {
+    right: 50px;
+}
+
+div.gameinfo img {
+    visibility: hidden;
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    rotation: 20deg;
+}
+
+div.seriesBlue img.first {
+    right: 30%;
+}
+
+div.seriesBlue img.second {
+    right: 60%;
+}
+
+div.seriesBlue img.third {
+    right: 90%;
+}
+
+div.seriesOrange img.first {
+    left: 30%;
+}
+
+div.seriesOrange img.second {
+    left: 60%;
+}
+
+div.seriesOrange img.third {
+    left: 90%;
 }
 
 
@@ -255,6 +300,9 @@ div.formblue {
 }
 
 div.playerbug div.team span.name {
+    white-space: nowrap;
+    width: 90px;
+    overflow: hidden;
     display: block;
     position: absolute;
     font-size: 15px;
@@ -262,6 +310,7 @@ div.playerbug div.team span.name {
     height: 23px;
     line-height: 23px;
     left: 3px;
+
 }
 
 div.playerbug div.team span.boost {

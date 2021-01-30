@@ -22,9 +22,7 @@ $(() => {
     });
 
     WsSubscribers.subscribe("game", "post_countdown_begin", () => {
-        setTimeout(() => {
-            toggleGameOverlay('visible');
-        }, 4250);
+
     });
 
     WsSubscribers.subscribe("game", "statfeed_event", (d) => {
@@ -52,14 +50,15 @@ $(() => {
         setTimeout(() => {
             playStinger();
             setTimeout(() => {
-                toggleGameOverlay('hidden');
+                inReplay = false;
+                toggleGameOverlay('visible');
                 $('.replayOverlay').css('visibility', 'hidden');
-            }, 700);
+            }, 1000);
         }, 1000);
     });
 
     WsSubscribers.subscribe("game", "replay_end", () => {
-        inReplay = false;
+
     });
 
     WsSubscribers.subscribe("game", "match_ended", (d) => {
@@ -83,14 +82,54 @@ $(() => {
             $('.targetinfo .player.stats #header').css("--targetBoost", `0px`);
         }
 
-        $('.gameinfo #series #format').text(d.settings.format);
-        $('.gameinfo #series #left').text(d.settings.blue[1]);
-        $('.gameinfo #series #right').text(d.settings.orange[1]);
-
         $('.gameoverlay .scorebug .board .info.match').text(d.settings.liga);
+        $('.gameoverlay #series #format').text(d.settings.format);
 
         if (d.settings.blue[0]) $('.gameoverlay .scorebug .board .team.name.blue').text(d.settings.blue[0]);
         if (d.settings.orange[0]) $('.gameoverlay .scorebug .board .team.name.orange').text(d.settings.orange[0]);
+
+        if (inReplay === false) {
+            switch (d.settings.blue[1]) {
+                case "1":
+                    $('.gameinfo .seriesBlue .first').css('visibility', 'visible');
+                    break;
+                case "2":
+                    $('.gameinfo .seriesBlue .first').css('visibility', 'visible');
+                    $('.gameinfo .seriesBlue .second').css('visibility', 'visible');
+                    break;
+                case "3":
+                    $('.gameinfo .seriesBlue .first').css('visibility', 'visible');
+                    $('.gameinfo .seriesBlue .second').css('visibility', 'visible');
+                    $('.gameinfo .seriesBlue .third').css('visibility', 'visible');
+                    break;
+                default:
+                    $('.gameinfo .seriesBlue .first').css('visibility', 'hidden');
+                    $('.gameinfo .seriesBlue .second').css('visibility', 'hidden');
+                    $('.gameinfo .seriesBlue .third').css('visibility', 'hidden');
+                    break;
+            }
+
+            switch (d.settings.orange[1]) {
+                case "1":
+                    $('.gameinfo .seriesOrange .first').css('visibility', 'visible');
+                    break;
+                case "2":
+                    $('.gameinfo .seriesOrange .first').css('visibility', 'visible');
+                    $('.gameinfo .seriesOrange .second').css('visibility', 'visible');
+                    break;
+                case "3":
+                    $('.gameinfo .seriesOrange .first').css('visibility', 'visible');
+                    $('.gameinfo .seriesOrange .second').css('visibility', 'visible');
+                    $('.gameinfo .seriesOrange .third').css('visibility', 'visible');
+                    break;
+                default:
+                    $('.gameinfo .seriesOrange .first').css('visibility', 'hidden');
+                    $('.gameinfo .seriesOrange .second').css('visibility', 'hidden');
+                    $('.gameinfo .seriesOrange .third').css('visibility', 'hidden');
+                    break;
+            }
+        }
+
     });
 });
 
@@ -169,6 +208,13 @@ function toggleGameOverlay(visibility) {
     $('.playerbug').css('visibility', visibility);
     $('.targetinfo').css('visibility', visibility);
     $('.boostmeter').css('visibility', visibility);
+
+    $('.gameinfo .seriesBlue .first').css('visibility', 'hidden');
+    $('.gameinfo .seriesBlue .second').css('visibility', 'hidden');
+    $('.gameinfo .seriesBlue .third').css('visibility', 'hidden');
+    $('.gameinfo .seriesOrange .first').css('visibility', 'hidden');
+    $('.gameinfo .seriesOrange .second').css('visibility', 'hidden');
+    $('.gameinfo .seriesOrange .third').css('visibility', 'hidden');
 }
 
 function statfeedUpdate(data) {

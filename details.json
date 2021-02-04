@@ -2,7 +2,7 @@
   "settings": {
     "liga": "Nitro League Division 1",
     "format": "Bo7",
-    "stinger_delay": 1000,
+    "stingerDelay": 1000,
     "blue": [
       "Team Blue",
       "1"

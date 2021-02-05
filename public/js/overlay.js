@@ -63,7 +63,7 @@ $(() => {
     });
 
     WsSubscribers.subscribe("game", "match_ended", (d) => {
-
+        toggleGameOverlay('hidden');
     });
 
     WsSubscribers.subscribe("game", "podium_start", () => {

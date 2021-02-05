@@ -2,6 +2,7 @@ $(() => {
     let updateTeamScores = false;
     let showNoTimeInClock = false;
     let inReplay = false;
+    let isEnd = false;
     let stingerDelay;
 
     $('.replayOverlay').css('visibility', 'hidden');
@@ -64,6 +65,7 @@ $(() => {
 
     WsSubscribers.subscribe("game", "match_ended", (d) => {
         toggleGameOverlay('hidden');
+        isEnd = true;
     });
 
     WsSubscribers.subscribe("game", "podium_start", () => {
@@ -90,7 +92,7 @@ $(() => {
         if (d.settings.blue[0]) $('.gameoverlay .scorebug .board .team.name.blue').text(d.settings.blue[0]);
         if (d.settings.orange[0]) $('.gameoverlay .scorebug .board .team.name.orange').text(d.settings.orange[0]);
 
-        if (inReplay === false) {
+        if (inReplay === false && isEnd === false) {
             switch (d.settings.blue[1]) {
                 case "1":
                     $('.gameinfo .seriesBlue .first').css('visibility', 'visible');
@@ -224,10 +226,6 @@ function toggleGameOverlay(visibility) {
     $('.gameinfo .seriesOrange .first').css('visibility', 'hidden');
     $('.gameinfo .seriesOrange .second').css('visibility', 'hidden');
     $('.gameinfo .seriesOrange .third').css('visibility', 'hidden');
-}
-
-function statfeedUpdate(data) {
-
 }
 
 function reformatTime(time, showMs) {

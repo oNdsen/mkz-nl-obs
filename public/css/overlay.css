@@ -131,7 +131,18 @@ div.iconright {
     background-repeat: no-repeat;
 }
 
-div.iconstats {
+div.iconstatsBlue {
+    height: 55px;
+    width: 55px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    background-image: url("/assets/img/logo/logo_blue.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+div.iconstatsOrange {
     height: 55px;
     width: 55px;
     position: absolute;
@@ -482,6 +493,8 @@ path#boostarc {
 
 .stinger {
     position: absolute;
+    left: 0;
+    top: 0;
 }
 
 

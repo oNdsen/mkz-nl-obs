@@ -2,6 +2,7 @@ $(() => {
     let updateTeamScores = false;
     let showNoTimeInClock = false;
     let inReplay = false;
+    let stingerDelay;
 
     $('.replayOverlay').css('visibility', 'hidden');
 
@@ -31,14 +32,14 @@ $(() => {
 
     WsSubscribers.subscribe("game", "goal_scored", (d) => {
         updateTeamScores = true;
-
+        console.log(d);
         setTimeout(() => {
             playStinger();
 
             setTimeout(() => {
                 toggleGameOverlay('hidden');
                 $('.replayOverlay').css('visibility', 'visible');
-            }, 1000);
+            }, stingerDelay);
         }, 2750);
     });
 
@@ -53,7 +54,7 @@ $(() => {
                 inReplay = false;
                 toggleGameOverlay('visible');
                 $('.replayOverlay').css('visibility', 'hidden');
-            }, 1000);
+            }, stingerDelay);
         }, 1000);
     });
 
@@ -70,6 +71,7 @@ $(() => {
     });
 
     WsSubscribers.subscribe("game", "update_state", (d) => {
+        if (!stingerDelay) stingerDelay = d.settings.stingerDelay;
         //Scoreboard
         scorebugUpdate(d.game, updateTeamScores, showNoTimeInClock);
         //Playerbugs
@@ -182,8 +184,17 @@ function playerbugUpdate(data) {
 }
 
 function targetinfoUpdate(data, teams) {
-    if (data.team === 0) $('body').css('--teamcolor', '#034ea4');
-    else if (data.team === 1) $('body').css('--teamcolor', '#fb6a31');
+    if (data.team === 0) {
+        $('body').css('--teamcolor', '#1388c6');
+        $('.iconstats').addClass('iconstatsBlue');
+        $('.iconstats').removeClass('iconstatsOrange');
+
+    }
+    else if (data.team === 1) {
+        $('body').css('--teamcolor', '#ff5513');
+        $('.iconstats').addClass('iconstatsOrange');
+        $('.iconstats').removeClass('iconstatsBlue');
+    }
 
     $('.targetinfo .team.stats #header .name').text(data.name);
     $('.targetinfo .team.stats .value.score').text(data.score);
@@ -191,8 +202,6 @@ function targetinfoUpdate(data, teams) {
     $('.targetinfo .team.stats .value.assists').text(data.assists);
     $('.targetinfo .team.stats .value.saves').text(data.saves);
     $('.targetinfo .team.stats .value.shots').text(data.shots);
-
-    $('.targetinfo .team.stats .teamwrapper .teamname').text(teams[data.team].name);
 
     $('.player.boostmeter .boost.value').text(data.boost);
     $('.player.boostmeter .speed.value').text(data.speed + " kph");
@@ -253,5 +262,6 @@ function sortByTeam(players) {
 }
 
 function playStinger() {
+    console.log('play');
     document.getElementById('stinger').play();
 }

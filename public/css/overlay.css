@@ -184,10 +184,8 @@ div.iconstatsOrange {
 }
 
 .player .stats .stat {
-    font-size: 12px;
-    margin: 0px;
-    margin-top: 1px;
-    margin-left: 5px;
+    font-size: 15px;
+    margin: 0 0 1px 5px;
     line-height: 22px;
     width: 10px;
 }
@@ -252,7 +250,7 @@ div.playerbug div.orange {
 div.playerbug div.team div.player {
     --boost: "100%";
     margin-top: 15px;
-    height: 35px;
+    height: 40px;
 }
 
 .player {
@@ -260,7 +258,7 @@ div.playerbug div.team div.player {
 }
 
 div.formorange {
-    height: 22px;
+    height: 25px;
     width: 100%;
     background: rgba(251, 106, 49, 0.80);
     box-shadow: 0px 0px 3px #fb6a31;
@@ -269,7 +267,7 @@ div.formorange {
 
 div.form {
     color: black;
-    height: 20px;
+    height: 25px;
     width: 100%;
     background: rgba(34, 34, 34, 0.80);
     display: flex;
@@ -283,7 +281,7 @@ div.formboostblue, div.formboostorange {
 }
 
 div.formboostblue {
-    height: 20px;
+    height: inherit;
     background: var(--blue-boost-bg);
     display: flex;
     justify-content: flex-end;
@@ -292,7 +290,7 @@ div.formboostblue {
 }
 
 div.formboostorange {
-    height: 20px;
+    height: inherit;
     background: var(--orange-boost-bg);
     display: flex;
     justify-content: flex-end;
@@ -302,7 +300,7 @@ div.formboostorange {
 }
 
 div.formblue {
-    height: 22px;
+    height: 25px;
     width: 100%;
     background: rgba(3, 77, 164, 0.80);
     border-radius: 2px;
@@ -326,7 +324,7 @@ div.playerbug div.team span.name {
 
 div.playerbug div.team span.boost {
     color: black;
-    font-size: 13px;
+    font-size: 20px;
     margin-right: 5px;
     --boost: "100%";
 }
@@ -335,8 +333,8 @@ div.playerbug div.team p.data::after {
     content: "";
     position: absolute;
     width: var(--boost);
-    height: 3px;
-    left: 0px;
+    height: 10px;
+    right: 0;
     visibility: visible;
     border-radius: 5px;
     transform: translateY(32px);
@@ -345,12 +343,12 @@ div.playerbug div.team p.data::after {
 
 div.playerbug div.team.orange p.data::after {
     background: #ff9838;
-    box-shadow: 0px 0px 5px 1px rgba(255, 136, 0, 1);
+    box-shadow: 0 0 5px 1px rgba(255, 136, 0, 1);
 }
 
 div.playerbug div.team.blue p.data::after {
     background: #60cdff;
-    box-shadow: 0px 0px 5px 1px rgba(0, 26, 255, 1);
+    box-shadow: 0 0 5px 1px rgba(0, 26, 255, 1);
 }
 
 div.targetinfo {
@@ -489,6 +487,31 @@ path#boostarc {
     left: 0;
     bottom: 0;
     background-image: url("/assets/img/overlayreplaycolordark.png");
+}
+
+.scorerinfo {
+    position: absolute;
+    width: 100%;
+    bottom: 150px;
+    font-size: 25px;
+    color: #c40000;
+    text-shadow: 0 0 10px #855151, 0 0 10px #910e0e;
+}
+
+.scorerinfo span {
+    color: white;
+    word-spacing: normal;
+    margin-right: 50px;
+}
+
+.scorewrapper {
+    width: inherit;
+    position: absolute;
+    text-align: center;
+}
+
+span.nomargin {
+    margin: 0;
 }
 
 .stinger {

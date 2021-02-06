@@ -48,7 +48,7 @@ function main(config) {
 
     function sendRelayMessage(senderConnectionId, message) {
         let json = JSON.parse(message);
-        const { settings } = require('../details.json');
+        const { settings } = require('../config.json');
 
         let index = message.indexOf('\n    "players"');
         if (json.event === "game:update_state") {

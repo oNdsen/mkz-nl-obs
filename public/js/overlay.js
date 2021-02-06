@@ -4,6 +4,7 @@ $(() => {
     let inReplay = false;
     let isEnd = false;
     let stingerDelay;
+    let globAssist;
 
     $('.replayOverlay').css('visibility', 'hidden');
 
@@ -28,12 +29,18 @@ $(() => {
     });
 
     WsSubscribers.subscribe("game", "statfeed_event", (d) => {
-
+        console.log(d);
+        if (d.type === 'Assist') globAssist = d.main_target.name;
     });
 
     WsSubscribers.subscribe("game", "goal_scored", (d) => {
         updateTeamScores = true;
         console.log(d);
+        $('.scorer').text(d.scorer.name);
+        $('.assister').text(globAssist);
+        $('.ballspeed').text(Math.round(d.goalspeed).toString());
+
+        globAssist = '';
         setTimeout(() => {
             playStinger();
 

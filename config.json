@@ -5,11 +5,11 @@
     "stingerDelay": 1000,
     "blue": [
       "Team Blue",
-      "1"
+      "0"
     ],
     "orange": [
       "Team Orange",
-      "2"
+      "0"
     ]
   }
 }

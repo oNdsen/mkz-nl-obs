@@ -38,7 +38,7 @@ $(() => {
         console.log(d);
         $('.scorer').text(d.scorer.name);
         $('.assister').text(globAssist);
-        $('.ballspeed').text(Math.round(d.goalspeed).toString());
+        $('.ballspeed.nomargin').text(Math.round(d.goalspeed).toString());
 
         globAssist = '';
         setTimeout(() => {

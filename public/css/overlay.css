@@ -210,11 +210,11 @@ div.scorebug .board span.team.name.orange {
 }
 
 div.scorebug .board span.team.score.blue {
-    left: 300px;
+    left: 350px;
 }
 
 div.scorebug .board span.team.score.orange {
-    right: 300px;
+    right: 350px;
 }
 
 div.scorebug .board span.info.time {
@@ -260,7 +260,7 @@ div.playerbug div.team div.player {
 div.formorange {
     height: 25px;
     width: 100%;
-    background: rgba(251, 106, 49, 0.80);
+    background: rgba(251, 106, 49, 0.8);
     box-shadow: 0px 0px 3px #fb6a31;
     position: relative;
 }
@@ -302,7 +302,7 @@ div.formboostorange {
 div.formblue {
     height: 25px;
     width: 100%;
-    background: rgba(3, 77, 164, 0.80);
+    background: rgba(3, 77, 164, 0.8);
     border-radius: 2px;
     box-shadow: 0px 0px 3px rgba(3, 77, 164, 1);
     position: relative;
@@ -519,6 +519,96 @@ span.nomargin {
     left: 0;
     top: 0;
 }
+
+.matchSummary {
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+
+    --topmargin: 40%;
+}
+
+.tableMid {
+    position: absolute;
+    width: 250px;
+    top: var(--topmargin);
+    left: calc(50% - (250px / 2));
+}
+
+.table.summaryPlayerBlue.p0 {
+    position: absolute;
+    width: 200px;
+    top: var(--topmargin);
+    left: calc(50% - (250px / 2) - 200px);
+}
+
+.table.summaryPlayerBlue.p1 {
+    position: absolute;
+    width: 200px;
+    top: var(--topmargin);
+    left: calc(50% - (250px / 2) - 400px);
+}
+
+.table.summaryPlayerBlue.p2 {
+    position: absolute;
+    width: 200px;
+    top: var(--topmargin);
+    left: calc(50% - (250px / 2) - 600px);
+}
+
+.table.summaryPlayerOrange.p0{
+    position: absolute;
+    width: 200px;
+    top: var(--topmargin);
+    right: calc(50% - (250px / 2) - 200px);
+}
+
+.table.summaryPlayerOrange.p1{
+    position: absolute;
+    width: 200px;
+    top: var(--topmargin);
+    right: calc(50% - (250px / 2) - 400px);
+}
+
+.table.summaryPlayerOrange.p2{
+    position: absolute;
+    width: 200px;
+    top: var(--topmargin);
+    right: calc(50% - (250px / 2) - 600px);
+}
+
+.element {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgba(20, 20, 20, 0.3);
+}
+
+.element.hStripe {
+    background-color: rgba(10,10,10, 0.5);
+}
+
+.element.goals {
+    margin-top: 10px;
+}
+
+.element.blank {
+    background-color: #00000000;
+    padding-bottom: 15px;
+}
+
+.summaryPlayerOrange .element.name {
+    border-bottom: 5px solid #FB6A31;
+}
+
+.summaryPlayerBlue .element.name {
+    border-bottom: 5px solid #034DA4;
+}
+
+
 
 
 

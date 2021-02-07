@@ -141,6 +141,11 @@ $(() => {
             }
         }
 
+        /*
+        if (isEnd) {
+            showSummary();
+        }*/
+
     });
 });
 
@@ -269,4 +274,8 @@ function sortByTeam(players) {
 function playStinger() {
     console.log('play');
     document.getElementById('stinger').play();
+}
+
+function showSummary() {
+
 }

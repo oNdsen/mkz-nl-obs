@@ -40,7 +40,6 @@ $(() => {
         $('.assister').text(globAssist);
         $('.ballspeed.nomargin').text(Math.round(d.goalspeed).toString());
 
-        globAssist = '';
         setTimeout(() => {
             playStinger();
 
@@ -67,7 +66,7 @@ $(() => {
     });
 
     WsSubscribers.subscribe("game", "replay_end", () => {
-
+        globAssist = '';
     });
 
     WsSubscribers.subscribe("game", "match_ended", (d) => {

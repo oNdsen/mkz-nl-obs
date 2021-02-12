@@ -521,7 +521,6 @@ span.nomargin {
 }
 
 .matchSummary {
-    visibility: hidden;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -530,6 +529,71 @@ span.nomargin {
     text-align: center;
 
     --topmargin: 40%;
+}
+
+.summaryHead {
+    position: absolute;
+    width: 100%;
+    top: 5%;
+    text-align: center;
+}
+
+.teams {
+    position: absolute;
+    width: max-content;
+    left: 760px;
+}
+
+.vs {
+    float: left;
+    height: 25px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    border: 2px solid white;
+
+    background-color: white;
+    color: black;
+    font-size: 20px;
+}
+
+.sumTeamOrange, .sumTeamBlue {
+    width: 75px;
+    height: 75px;
+    float: left;
+}
+
+.sumTeamBlue {
+    background-image: url("/assets/img/logo/logo_blue.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 2px solid white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.sumTeamOrange {
+    background-image: url("/assets/img/logo/logo_orange.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 2px solid white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.scores {
+    position: absolute;
+    width: 375px;
+    left: 760px;
+    top: 175px;
+}
+
+.this {
+    width: 100%;
+    color: black;
+}
+
+.sumScoreBlue {
+    width: 150px;
 }
 
 .tableMid {
@@ -592,7 +656,6 @@ span.nomargin {
 }
 
 .element.goals {
-    margin-top: 10px;
 }
 
 .element.blank {

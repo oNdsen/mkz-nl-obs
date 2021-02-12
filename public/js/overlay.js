@@ -2,11 +2,13 @@ $(() => {
     let updateTeamScores = false;
     let showNoTimeInClock = false;
     let inReplay = false;
-    let isEnd = false;
+    let isEnd = true;
     let stingerDelay;
     let globAssist;
 
     $('.replayOverlay').css('visibility', 'hidden');
+    //$('.matchSummary').css('visibility', 'hidden');
+    toggleGameOverlay("hidden");
 
     WsSubscribers.init(49322, false);
 

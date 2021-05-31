@@ -115,7 +115,7 @@ div.iconleft {
     top: 10px;
     position: absolute;
     margin-left: 20px;
-    background-image: url('/assets/img/logo/logo_blue.png');
+    background-image: url('../assets/img/logo/logo_blue.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -126,7 +126,7 @@ div.iconright {
     top: 10px;
     position: absolute;
     right: 20px;
-    background-image: url('/assets/img/logo/logo_orange.png');
+    background-image: url('../assets/img/logo/logo_orange.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -137,7 +137,7 @@ div.iconstatsBlue {
     position: absolute;
     right: 15px;
     bottom: 15px;
-    background-image: url("/assets/img/logo/logo_blue.png");
+    background-image: url("../assets/img/logo/logo_blue.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -148,7 +148,7 @@ div.iconstatsOrange {
     position: absolute;
     right: 15px;
     bottom: 15px;
-    background-image: url("/assets/img/logo/logo_orange.png");
+    background-image: url("../assets/img/logo/logo_orange.png");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -486,7 +486,7 @@ path#boostarc {
     height: 212px;
     left: 0;
     bottom: 0;
-    background-image: url("/assets/img/overlayreplaycolordark.png");
+    background-image: url("../assets/img/overlayreplaycolordark.png");
 }
 
 .scorerinfo {
@@ -563,7 +563,7 @@ span.nomargin {
 }
 
 .sumTeamBlue {
-    background-image: url("/assets/img/logo/logo_blue.png");
+    background-image: url("../assets/img/logo/logo_blue.png");
     background-size: contain;
     background-repeat: no-repeat;
     border: 2px solid white;
@@ -572,7 +572,7 @@ span.nomargin {
 }
 
 .sumTeamOrange {
-    background-image: url("/assets/img/logo/logo_orange.png");
+    background-image: url("../assets/img/logo/logo_orange.png");
     background-size: contain;
     background-repeat: no-repeat;
     border: 2px solid white;
@@ -653,9 +653,6 @@ span.nomargin {
 
 .element.hStripe {
     background-color: rgba(10,10,10, 0.5);
-}
-
-.element.goals {
 }
 
 .element.blank {

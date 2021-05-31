@@ -8,25 +8,21 @@
             crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="css/fontImport.css">
     <link type="text/css" rel="stylesheet" href="css/overlay.css">
-    <script src="js/ws-relay/main.js"></script>
-    <script src="js/overlay.js"></script>
     <title>Nitro League Overlay</title>
 </head>
 <body>
-<div class="gameoverlay">
+<div class="gameoverlay" id="overlay-wrapper">
     <div class="scorebug">
         <div class="board">
-            <span class="team name blue">BLAU</span>
-            <span class="team score blue">0</span>
-            <span class="info match">Nitro League Division 1</span>
-            <span class="info time">5:00</span>
+            <span class="team name blue" id="team-name-blue">BLAU</span>
+            <span class="team name orange" id="team-name-orange">ORANGE</span>
+            <span class="team score blue" id="team-score-blue">0</span>
+            <span class="team score orange" id="team-score-orange">0</span>
+            <span class="info match" id="match-league">INFO</span>
+            <span class="info time" id="match-time">5:00</span>
             <div class="iconleft"></div>
-            <span class="team name orange">ORANGE</span>
-            <span class="team score orange">0</span>
             <div class="iconright"></div>
         </div>
-        <div class="team wins blue"></div>
-        <div class="team wins orange"></div>
     </div>
     <div class="gameinfo">
         <div class="seriesBlue">
@@ -43,7 +39,7 @@
     </div>
     <div class="playerbug">
         <div class="team blue">
-            <div class="player p0">
+            <div class="player p0" id="team-0-player-0">
                 <div class="formblue data">
                     <span class="name">Name</span>
                     <div class="stats goals">
@@ -64,12 +60,12 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="formboostblue">
+                    <div class="formboost0">
                         <span class="boost">100</span>
                     </div>
                 </div>
             </div>
-            <div class="player p1">
+            <div class="player p1" id="team-0-player-1">
                 <div class="formblue data">
                     <span class="name">Name</span>
                     <div class="stats goals">
@@ -90,12 +86,12 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="formboostblue">
+                    <div class="formboost0">
                         <span class="boost">100</span>
                     </div>
                 </div>
             </div>
-            <div class="player p2">
+            <div class="player p2" id="team-0-player-2">
                 <div class="formblue data">
                     <span class="name">Name</span>
                     <div class="stats goals">
@@ -116,7 +112,7 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="formboostblue">
+                    <div class="formboost0">
                         <span class="boost">100</span>
                     </div>
                 </div>
@@ -124,7 +120,7 @@
 
         </div>
         <div class="team orange">
-            <div class="player p0">
+            <div class="player p0" id="team-1-player-0">
                 <div class="formorange data">
                     <span class="name">Name</span>
                     <div class="stats goals">
@@ -145,12 +141,12 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="formboostorange">
+                    <div class="formboost1">
                         <span class="boost">100</span>
                     </div>
                 </div>
             </div>
-            <div class="player p1">
+            <div class="player p1" id="team-1-player-1">
                 <div class="formorange data">
                     <span class="name">Name</span>
                     <div class="stats goals">
@@ -171,12 +167,12 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="formboostorange">
+                    <div class="formboost1">
                         <span class="boost">100</span>
                     </div>
                 </div>
             </div>
-            <div class="player p2">
+            <div class="player p2" id="team-1-player-2">
                 <div class="formorange data">
                     <span class="name">Name</span>
                     <div class="stats goals">
@@ -197,7 +193,7 @@
                     </div>
                 </div>
                 <div class="form">
-                    <div class="formboostorange">
+                    <div class="formboost1">
                         <span class="boost">100</span>
                     </div>
                 </div>
@@ -205,7 +201,7 @@
             </div>
         </div>
     </div>
-    <div class="targetinfo">
+    <div class="targetinfo" id="targetinfo">
         <div class="team stats">
             <p id="header">
                 <span class="name">SPIELERNAME</span>
@@ -227,7 +223,7 @@
             <div class="iconstats"></div>
         </div>
     </div>
-    <div class="player boostmeter">
+    <div class="player boostmeter" id="boostmeter">
         <svg id="boostSVG" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <linearGradient id="blueGrad">
@@ -252,17 +248,13 @@
     <div class="statfeed">
 
     </div>
-    <div class="replayOverlay">
+    <div class="replayOverlay" id="overlay-replay">
         <div class="scorerinfo">
             <p class="scorewrapper">Ballspeed: <span class="ballspeed nomargin">0</span><span>kph</span> Scorer: <span
                     class="scorer">Name</span> Assist: <span class="assister"></span></p>
         </div>
     </div>
-    <div class="matchSummary">
-        <video autoplay muted loop width="1920" height="1080">
-            <source src="/assets/img/BG_CLIP.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
+    <div class="matchSummary" id="postMatchStats">
         <div class="summaryHead">
             <div class="teams">
                 <div class="sumTeamBlue"></div>
@@ -359,9 +351,13 @@
         </div>
     </div>
     <video class="stinger" id="stinger" width="1920" height="1080">
-        <source src="/assets/stinger/Stinger_Replay.webm" type="video/webm">
+        <source src="assets/stinger/Stinger_Replay.webm" type="video/webm">
         Your browser does not support the video tag.
     </video>
 </div>
+<script src="../config.js"></script>
+<script src="js/websocketsubscriber.js"></script>
+<script src="js/overlay.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

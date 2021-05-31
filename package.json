@@ -2,10 +2,9 @@
   "name": "mkz-nl-obs",
   "version": "1.0.0",
   "description": "Nitro League Overlay",
-  "main": "index.js",
+  "main": "relay/websocketrelay.js",
   "scripts": {
-    "test": "nodemon main",
-    "start": "nodemon ."
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -18,10 +17,9 @@
   },
   "homepage": "https://github.com/IsaaacQINH/mkz-nl-obs#readme",
   "dependencies": {
+    "atob": "^2.1.2",
     "cli-msg": "^1.0.0",
-    "express": "^4.17.1",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.4",
+    "prompt": "^1.1.0",
     "ws": "^7.3.1"
   }
 }

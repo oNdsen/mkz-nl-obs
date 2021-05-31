@@ -1,4 +1,4 @@
-{
+const Config = {
   "settings": {
     "liga": "Nitro League Division 1",
     "format": "Bo7",

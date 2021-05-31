@@ -1,6 +1,6 @@
 @echo off
 
 call npm install
-call npm start
+call node relay/websocket.js
 
 pause

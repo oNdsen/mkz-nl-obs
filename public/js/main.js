@@ -22,25 +22,16 @@ WsSubscribers.init("localhost", 49322, false, [
 
 WsSubscribers.subscribe("game", "update_state", (d) => {
     Overlay.updateScoreboard(d);
-});
-
-WsSubscribers.subscribe("game", "statfeed_event", (d) => {
-
+    
+    if (d.game.hasTarget) {
+        Overlay.updateTargetHUD(d.teams[d.players[d.game.target]].players[d.game.target]);
+    }
+    else {
+        $('#targetinfo').hide();
+    }
 });
 
 WsSubscribers.subscribe("game", "goal_scored", (d) => {
-
-});
-
-WsSubscribers.subscribe("game", "replay_will_end", (d) => {
-
-});
-
-WsSubscribers.subscribe("game", "replay_end", (d) => {
-
-});
-
-WsSubscribers.subscribe("game", "post_countdown_begin", (d) => {
 
 });
 

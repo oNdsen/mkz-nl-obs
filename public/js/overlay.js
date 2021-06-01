@@ -8,8 +8,13 @@ const Overlay = {
         $('#team-score-blue').text(data.teams[0].name);
         $('#team-score-orange').text(data.teams[1].name);
     },
-    updateTargetHUD(player, ballPos) {
-        
+    updateTargetHUD(player) {
+        $('#targetinfo #header .name').text(player.name);
+        $('#targetinfo #statsvalue .score').text(player.score);
+        $('#targetinfo #statsvalue .goals').text(player.goals);
+        $('#targetinfo #statsvalue .assists').text(player.assists);
+        $('#targetinfo #statsvalue .saves').text(player.saves);
+        $('#targetinfo #statsvalue .shots').text(player.shots);
     },
     updateTeamDetails(data) {
         data.teams.forEach((team, teamID) => {

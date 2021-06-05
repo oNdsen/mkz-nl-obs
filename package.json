@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Nitro League Overlay",
   "main": "relay/websocketrelay.js",
+  "bin": "bin.js",
+  "icon": "mkz-nl-obs.ico",
   "scripts": {
     "start": "node ."
   },

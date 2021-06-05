@@ -3,10 +3,10 @@ const Overlay = {
         $('#match-league').text(Config.settings.liga);
         $('#format').text(Config.settings.format);
 
-        $('#team-name-blue').text(data.teams[0].name);
-        $('#team-name-orange').text(data.teams[1].name);
-        $('#team-score-blue').text(data.teams[0].name);
-        $('#team-score-orange').text(data.teams[1].name);
+        $('#team-name-blue').text(Config.settings.blue[0] || data.teams[0].name);
+        $('#team-name-orange').text(Config.settings.orange[0] || data.teams[1].name);
+        $('#team-score-blue').text(data.teams[0].score);
+        $('#team-score-orange').text(data.teams[1].score);
     },
     updateTargetHUD(player) {
         $('#targetinfo #header .name').text(player.name);
@@ -15,6 +15,21 @@ const Overlay = {
         $('#targetinfo #statsvalue .assists').text(player.assists);
         $('#targetinfo #statsvalue .saves').text(player.saves);
         $('#targetinfo #statsvalue .shots').text(player.shots);
+
+        if (player.team === 0) {
+            $('body').css('--teamcolor', '#1388c6');
+            $('.iconstats').addClass('iconstatsBlue');
+            $('.iconstats').removeClass('iconstatsOrange');
+        }
+        else {
+            $('body').css('--teamcolor', '#ff5513');
+            $('.iconstats').addClass('iconstatsOrange');
+            $('.iconstats').removeClass('iconstatsBlue');
+        }
+
+        $('#boostmeter .boost.value').text(player.boost);
+        $('#boostmeter .speed.value').text(player.speed + " kph");
+        $('#boostarc').css('stroke-dashoffset', Utils.animatePath(player.boost));
     },
     updateTeamDetails(data) {
         data.teams.forEach((team, teamID) => {
@@ -33,14 +48,11 @@ const Overlay = {
             }
         });
     },
-    goalEvent(data) {
-        
-    },
     updateClock(clock, isOT) {
         let time = (isOT ? '+' : '') + (new Date(clock.ms * 1000)).toISOString().substr((!isOT && clock.sec < 60) ? 17 : 15, 4);
            
         if (clock.ms !== clock.sec) {
-            $('#clock').text(time);
+            $('#match-time').text(time);
         }
     },
     playStinger(source) {
@@ -57,5 +69,8 @@ const Utils = {
 
         const fontsize = baseSize - len;
         return `${fontsize}px`;
+    },
+    animatePath: (value) => {
+        return 360 - (value * 3.6);
     }
 }

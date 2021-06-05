@@ -276,11 +276,11 @@ div.form {
     border-radius: 2px;
 }
 
-div.formboostblue, div.formboostorange {
+div.formboost0, div.formboost1 {
     transition-duration: 500ms;
 }
 
-div.formboostblue {
+div.formboost0 {
     height: inherit;
     background: var(--blue-boost-bg);
     display: flex;
@@ -289,7 +289,7 @@ div.formboostblue {
     border-radius: 2px;
 }
 
-div.formboostorange {
+div.formboost1 {
     height: inherit;
     background: var(--orange-boost-bg);
     display: flex;

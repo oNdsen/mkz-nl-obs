@@ -1,5 +1,6 @@
 console.log("Initialize");
 
+//$('#stinger').hide();
 $('#postMatchStats').hide();
 $('#overlay-replay').hide();
 $('#targetinfo').hide();
@@ -22,26 +23,33 @@ WsSubscribers.init("localhost", 49322, false, [
 
 WsSubscribers.subscribe("game", "update_state", (d) => {
     Overlay.updateScoreboard(d);
-});
-
-WsSubscribers.subscribe("game", "statfeed_event", (d) => {
-
+    Overlay.updateTeamDetails(d);
+    Overlay.updateClock(d.game.clock, d.game.isOT)
+    
+    if (d.game.hasTarget) {
+        let target = d.game.target;
+        let teamID = d.players[target];
+        let player = d.teams[teamID].players[target];
+        $('#targetinfo').show();
+        $('#boostmeter').show();
+        Overlay.updateTargetHUD(player);
+    }
+    else {
+        $('#targetinfo').hide();
+        $('#boostmeter').hide();
+    }
 });
 
 WsSubscribers.subscribe("game", "goal_scored", (d) => {
-
+    setTimeout(() => {
+        Overlay.playStinger('stinger');
+    }, Config.settings.stingerDelay * 3);
 });
 
 WsSubscribers.subscribe("game", "replay_will_end", (d) => {
-
-});
-
-WsSubscribers.subscribe("game", "replay_end", (d) => {
-
-});
-
-WsSubscribers.subscribe("game", "post_countdown_begin", (d) => {
-
+    setTimeout(() => {
+        Overlay.playStinger('stinger');
+    }, Config.settings.stingerDelay * 1.25);
 });
 
 WsSubscribers.subscribe("game", "match_ended", (d) => {

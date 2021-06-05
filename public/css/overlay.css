@@ -77,7 +77,6 @@ div.seriesOrange {
 }
 
 div.gameinfo img {
-    visibility: hidden;
     position: absolute;
     width: 30px;
     height: 40px;
@@ -480,13 +479,20 @@ path#boostarc {
     transition-duration: 250ms;
 }
 
-.replayOverlay {
+#overlay-replay {
     position: absolute;
     width: 1920px;
     height: 212px;
     left: 0;
     bottom: 0;
-    background-image: url("../assets/img/overlayreplaycolordark.png");
+}
+
+.replayBlue {
+    background-image: url("../assets/img/replay_blue.png");
+}
+
+.replayOrange {
+    background-image: url("../assets/img/replay_orange.png");
 }
 
 .scorerinfo {

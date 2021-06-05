@@ -1,5 +1,52 @@
 console.log("Initialize");
 
+switch (Config.settings.blue[1]) {
+    case '1':
+        $('.seriesBlue .first').show();
+        $('.seriesBlue .second').hide();
+        $('.seriesBlue .third').hide();
+        break;
+    case '2':
+        $('.seriesBlue .first').show();
+        $('.seriesBlue .second').show();
+        $('.seriesBlue .third').hide();
+        break;
+    case '3':
+        $('.seriesBlue .first').show();
+        $('.seriesBlue .second').show();
+        $('.seriesBlue .third').show();
+        break;
+    default:
+        $('.seriesBlue .first').hide();
+        $('.seriesBlue .second').hide();
+        $('.seriesBlue .third').hide();
+        break;
+}
+
+
+switch (Config.settings.orange[1]) {
+    case '1':
+        $('.seriesOrange .first').show();
+        $('.seriesOrange .second').hide();
+        $('.seriesOrange .third').hide();
+        break;
+    case '2':
+        $('.seriesOrange .first').show();
+        $('.seriesOrange .second').show();
+        $('.seriesOrange .third').hide();
+        break;
+    case '3':
+        $('.seriesOrange .first').show();
+        $('.seriesOrange .second').show();
+        $('.seriesOrange .third').show();
+        break;
+    default:
+        $('.seriesOrange .first').hide();
+        $('.seriesOrange .second').hide();
+        $('.seriesOrange .third').hide();
+        break;
+}
+
 //$('#stinger').hide();
 $('#postMatchStats').hide();
 $('#overlay-replay').hide();
@@ -41,18 +88,50 @@ WsSubscribers.subscribe("game", "update_state", (d) => {
 });
 
 WsSubscribers.subscribe("game", "goal_scored", (d) => {
+    if (d.scorer.teamnum === 0) {
+        $('#overlay-replay').addClass("replayBlue");
+        $('#overlay-replay').removeClass("replayOrange");
+    }
+    else {
+        $('#overlay-replay').addClass("replayOrange");
+        $('#overlay-replay').removeClass("replayBlue");
+    }
+
+    console.log(d);
+
+    $('.ballspeed').text(Math.round(d.goalspeed));
+    $('.scorer').text(d.scorer.name);
+    if(d.assister.name !== "") {
+        $('.assister').show();
+        $('.assister').text("Assist: " + d.assister.name);
+    }
+    else {
+        $('.assister').hide();
+    }
+   
+
     setTimeout(() => {
         Overlay.playStinger('stinger');
     }, Config.settings.stingerDelay * 3);
 });
 
-WsSubscribers.subscribe("game", "replay_will_end", (d) => {
-    setTimeout(() => {
-        Overlay.playStinger('stinger');
-    }, Config.settings.stingerDelay * 1.25);
+WsSubscribers.subscribe("game", "replay_start", () => {
+    $('.targetWrapper').hide();
+    $('#overlay-replay').show();
 });
 
-WsSubscribers.subscribe("game", "match_ended", (d) => {
+WsSubscribers.subscribe("game", "replay_end", () => {
+    $('.targetWrapper').show();
+    $('#overlay-replay').hide();
+});
+
+WsSubscribers.subscribe("game", "replay_will_end", () => {
+    setTimeout(() => {
+        Overlay.playStinger('stinger');
+    }, Config.settings.stingerDelay * 1.5);
+});
+
+WsSubscribers.subscribe("game", "match_ended", () => {
     $('#scoreboard').hide();
     $('.teamdetails').hide();
 });

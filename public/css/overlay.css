@@ -155,8 +155,9 @@ div.iconstatsOrange {
 div.partnerleft, div.partnerright {
     width: 200px;
     height: 100px;
-    background-size: cover;
-    background: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 div.partnerleft {

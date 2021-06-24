@@ -152,6 +152,24 @@ div.iconstatsOrange {
     background-repeat: no-repeat;
 }
 
+div.partnerleft, div.partnerright {
+    width: 200px;
+    height: 100px;
+    background-size: cover;
+    background: transparent;
+}
+
+div.partnerleft {
+    background-image: url("../assets/img/partner/partner_blue.png");
+    transform: translate(-100%);
+}
+
+div.partnerright {
+    background-image: url("../assets/img/partner/partner_orange.png");
+    transform: translate(100%, -100%);
+    float: right;
+}
+
 .player .goals {
     left: 98px;
 }
@@ -190,7 +208,7 @@ div.iconstatsOrange {
 }
 
 div.scorebug .board span.team.name {
-    font-size: 25px;
+    font-size: 22px;
     width: 300px;
     top: 25px;
 }

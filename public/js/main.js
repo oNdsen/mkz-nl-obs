@@ -47,7 +47,7 @@ switch (Config.settings.orange[1]) {
         break;
 }
 
-//$('#stinger').hide();
+$('#stinger').hide();
 $('#postMatchStats').hide();
 $('#overlay-replay').hide();
 $('#targetinfo').hide();
@@ -116,12 +116,12 @@ WsSubscribers.subscribe("game", "goal_scored", (d) => {
 });
 
 WsSubscribers.subscribe("game", "replay_start", () => {
-    $('.targetWrapper').hide();
+    Overlay.hideGameOverlay();
     $('#overlay-replay').show();
 });
 
 WsSubscribers.subscribe("game", "replay_end", () => {
-    $('.targetWrapper').show();
+    Overlay.showGameOverlay();
     $('#overlay-replay').hide();
 });
 
@@ -131,7 +131,6 @@ WsSubscribers.subscribe("game", "replay_will_end", () => {
     }, Config.settings.stingerDelay * 1.5);
 });
 
-WsSubscribers.subscribe("game", "match_ended", () => {
-    $('#scoreboard').hide();
-    $('.teamdetails').hide();
+WsSubscribers.subscribe("game", "podium_start", () => {
+    Overlay.hideGameOverlay();
 });

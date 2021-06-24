@@ -57,6 +57,18 @@ const Overlay = {
     },
     playStinger(source) {
         document.getElementById(`${source}`).play();
+    },
+    hideGameOverlay() {
+        $('.targetWrapper').hide();
+        $('.scorebug').hide();
+        $('.gameinfo').hide();
+        $('.playerbug').hide();
+    },
+    showGameOverlay() {
+        $('.targetWrapper').show();
+        $('.scorebug').show();
+        $('.gameinfo').show();
+        $('.playerbug').show();
     }
 }
 

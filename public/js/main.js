@@ -47,7 +47,7 @@ switch (Config.settings.orange[1]) {
         break;
 }
 
-$('#stinger').hide();
+//$('#stinger').hide();
 $('#postMatchStats').hide();
 $('#overlay-replay').hide();
 $('#targetinfo').hide();

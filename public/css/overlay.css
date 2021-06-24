@@ -24,7 +24,7 @@ body {
     color: white;
     overflow: hidden;
     user-select: none;
-    background-color: white;
+    background-color: #3e3e3e;
 }
 
 div.scorebug {
@@ -154,20 +154,21 @@ div.iconstatsOrange {
 
 div.partnerleft, div.partnerright {
     width: 200px;
-    height: 100px;
+    height: 75px;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
 }
 
 div.partnerleft {
-    background-image: url("../assets/img/partner/partner_blue.png");
-    transform: translate(-100%);
+    background-image: url("https://cdn.discordapp.com/attachments/842799280897130526/857681223022018560/image0.png");
+    transform: translate(-110%, 0%);
+    background-position: right;
 }
 
 div.partnerright {
-    background-image: url("../assets/img/partner/partner_orange.png");
-    transform: translate(100%, -100%);
+    background-image: url("https://cdn.discordapp.com/attachments/842799280897130526/857681223022018560/image0.png");
+    transform: translate(110%, -100%);
+    background-position: left;
     float: right;
 }
 

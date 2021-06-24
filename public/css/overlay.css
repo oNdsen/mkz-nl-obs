@@ -139,6 +139,7 @@ div.iconstatsBlue {
     background-image: url("../assets/img/logo/logo_blue.png");
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 div.iconstatsOrange {
@@ -150,6 +151,7 @@ div.iconstatsOrange {
     background-image: url("../assets/img/logo/logo_orange.png");
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
 }
 
 div.partnerleft, div.partnerright {

@@ -102,11 +102,11 @@ WsSubscribers.subscribe("game", "goal_scored", (d) => {
     $('.ballspeed').text(Math.round(d.goalspeed));
     $('.scorer').text(d.scorer.name);
     if(d.assister.name !== "") {
-        $('.assister').show();
+        $('.scorewrapper.assist').show();
         $('.assister').text(d.assister.name);
     }
     else {
-        $('.assister').hide();
+        $('.scorewrapper.assist').hide();
     }
    
 

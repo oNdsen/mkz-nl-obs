@@ -50,7 +50,7 @@ div.scorebug .board span {
 div.gameinfo {
     width: 330px;
     height: 45px;
-    top: 76px;
+    top: 75px;
     position: absolute;
     left: 800px;
     background: var(--gameinfo-bg);
@@ -521,21 +521,28 @@ path#boostarc {
     position: absolute;
     width: 100%;
     bottom: 150px;
-    font-size: 25px;
-    color: #c40000;
-    text-shadow: 0 0 10px #855151, 0 0 10px #910e0e;
-}
-
-.scorerinfo span {
-    color: white;
-    word-spacing: normal;
-    margin-right: 50px;
+	text-align: center;
 }
 
 .scorewrapper {
-    width: inherit;
-    position: absolute;
     text-align: center;
+	font-size: 25px;
+    color: #c40000;
+    text-shadow: 0 0 10px #855151, 0 0 10px #910e0e;
+	display: inline-block;
+}
+
+.scorewrapper:not(:last-of-type) {
+	margin-right: 50px;
+}
+
+.scorerinfo .scorewrapper span {
+    color: white;
+    word-spacing: normal;
+}
+
+.scorerinfo .scorewrapper span+span {
+	margin-left: 5px;
 }
 
 span.nomargin {
